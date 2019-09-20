@@ -11,10 +11,13 @@ const auth = require("./routes/auth");
 const user = require("./routes/user");
 const category = require("./routes/category");
 const product = require("./routes/product");
+const braintree = require("./routes/braintree");
+const order = require("./routes/order");
 
 const app = express();
 
 mongoose.connect(process.env.DATABASE, {
+    useUnifiedTopology:true,
     useNewUrlParser: true,
     useCreateIndex: true
 }).then(() => console.log("DB connected"));
@@ -29,6 +32,8 @@ app.use("/api", auth);
 app.use("/api", user);
 app.use("/api", category);
 app.use("/api", product);
+app.use("/api", braintree);
+app.use("/api", order);
 
 const port = process.env.PORT || 8000;
 
